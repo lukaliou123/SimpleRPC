@@ -28,9 +28,11 @@ public class UserServiceImpl implements UserService{
 
         //模拟数据库中取用户的行为
         Random random =new Random();
-        User user = User.builder().userName(UUID.randomUUID().toString())
-                .id(id).
-                sex(random.nextBoolean()).build();
+        User user = User.builder()
+                .userName(UUID.randomUUID().toString())
+                .id(id)
+                .sex(random.nextBoolean())
+                .build();
 
         return user;
     }

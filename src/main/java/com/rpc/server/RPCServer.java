@@ -32,7 +32,7 @@ public class RPCServer {
 
         try{
             //创建serverSocket对象，端口号要和Client一致
-            ServerSocket serverSocket = new ServerSocket(8889);
+            ServerSocket serverSocket = new ServerSocket(8899);
             System.out.println("服务器启动！");
 
             //BIO的方式监听Socket，监听到之后返回Socket对象
