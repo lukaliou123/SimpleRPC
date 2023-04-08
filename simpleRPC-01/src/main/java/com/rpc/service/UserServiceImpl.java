@@ -3,7 +3,6 @@ package com.rpc.service;
 
 import com.rpc.common.User;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.Random;
 import java.util.UUID;
 
