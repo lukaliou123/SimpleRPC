@@ -10,6 +10,10 @@
 RPCRequest有了interface,paramName，methodname之类的参数
 RPCResponse可以储存返回的数据，并返回一个成功或失败数值
 
+为什么要使用线程？
+因为BIO只能同时处理一个客户端的连接，如果需要管理多个客户端的话，就需要为我们请求的客户端单独创建一个线程
+
+
 然后，使用了动态代理
 将Client更注重于功能的具体实现，将网络连接功能交给了client的代理类
 同时将写入读取数据流的功能分给了IOClient，由proxy与其交流
