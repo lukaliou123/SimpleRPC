@@ -3,30 +3,28 @@ package com.rpc.server;
 import com.rpc.common.RPCRequest;
 import com.rpc.common.RPCResponse;
 import com.rpc.service.ServiceProvider;
-import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.util.concurrent.EventExecutorGroup;
 import lombok.AllArgsConstructor;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
+ * @author weiyu_zeng
+ *
  * ChannelHandlerContext.writeAndFlush：方法会将数据写到ChannelPipeline中当前ChannelHandler的下一个ChannelHandler开始处理。
  */
 @AllArgsConstructor
 public class NettyRPCServerHandler extends SimpleChannelInboundHandler<RPCRequest> {
     private ServiceProvider serviceProvider;
 
-
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, RPCRequest msg) throws Exception {
-        //sout(msg)
+        // System.out.println(msg);
         RPCResponse response = getResponse(msg);
         ctx.writeAndFlush(response);
         ctx.close();
-
     }
 
     @Override
@@ -36,7 +34,7 @@ public class NettyRPCServerHandler extends SimpleChannelInboundHandler<RPCReques
     }
 
     // 这里和WorkThread里的getResponse差不多
-    public RPCResponse getResponse(RPCRequest request) {
+    RPCResponse getResponse(RPCRequest request) {
         // 得到服务名
         String interfaceName = request.getInterfaceName();
         // 得到服务器相应类
@@ -51,8 +49,9 @@ public class NettyRPCServerHandler extends SimpleChannelInboundHandler<RPCReques
             e.printStackTrace();
             System.out.println("方法执行错误");
             return RPCResponse.fail();
+        } catch(Exception e){
+            System.out.println("未知错误");
+            return RPCResponse.fail();
         }
     }
-
-
 }
