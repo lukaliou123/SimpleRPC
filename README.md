@@ -40,3 +40,7 @@ JDK动态代理要调用InvocationHandler这个方法
 具体是netty创建NioEventLoopGroup,channel要启动这个线程池需要用initializer来解决粘包问题，initializer在管道添加了固定长度或其他的什么管理数据传输  
 并在管道最后添加handler，这个handler里包含如何保存或运行RPC请求的功能细节，客户端管请求，服务端管回复
 顺便，initializer继承了ChannelInitializer，handler继承了SimpleChannelInboundHandler，都是让channel进行管理
+
+4.11：
+channelFuture.channel().closeFuture().sync();
+找到了问题，是因为服务端没有使用sync导致没有使主线程堵塞而快速关闭，关于此的详情请见issue的笔记

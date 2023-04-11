@@ -56,6 +56,9 @@ public class NettyRPCServer implements RPCServer{
 
             //同步阻塞
             ChannelFuture channelFuture = serverBootstrap.bind(port).sync();
+
+            // 死循环监听
+            channelFuture.channel().closeFuture().sync();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
