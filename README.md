@@ -44,3 +44,6 @@ JDK动态代理要调用InvocationHandler这个方法
 4.11：
 channelFuture.channel().closeFuture().sync();
 找到了问题，是因为服务端没有使用sync导致没有使主线程堵塞而快速关闭，关于此的详情请见issue的笔记
+
+4.12
+今天试试修改序列化，原本的java序列化效率太低，这次用json进行序列化修改
