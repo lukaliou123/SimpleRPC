@@ -1,4 +1,4 @@
-package com.rpc.server;
+package com.rpc.service;
 
 
 import java.util.HashMap;
