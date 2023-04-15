@@ -14,6 +14,7 @@
         <module>simpleRPC-03</module>
         <module>simpleRPC-04</module>
         <module>simpleRPC-05</module>
+        <module>simpleRPC-06</module>
     </modules>
 
     <properties>
