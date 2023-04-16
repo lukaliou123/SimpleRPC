@@ -96,6 +96,8 @@ public class ZkServiceRegister implements ServiceRegister{
             }
             // 路径地址，一个/代表一个节点
             String path = "/" + serviceName + "/" + getServiceAddress(serverAddress);
+            // 临时节点，服务器下线就删除节点
+            client.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(path);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
